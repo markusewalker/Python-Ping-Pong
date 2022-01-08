@@ -29,3 +29,5 @@ While `turtle` should be a pre-installed Python library, you will need to ensure
 If you are on a GUI such as IDLE, run the module as any other Python file and that should work as well.
 
 Here is a preview of the game once it is successfully launched:
+
+![Python Ping Pong Preview](https://github.com/markusewalker/Python-Ping-Pong/blob/main/preview.png)
