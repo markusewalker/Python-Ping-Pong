@@ -1,7 +1,7 @@
 # Authored By: Markus Walker
 # Inspired By: https://github.com/srimani-programmer/Ping-Pong-Game
 # Licensed By: Open Source
-# Date Modified: 1/7/22
+# Date Modified: 1/8/22
 #
 # Descrption: Simple Ping Pong game developed in Python using the 
 # turte module. Bring a friend and settle once and for all who is
@@ -40,8 +40,8 @@ def main():
     player_2_score = 0
 
     # Constant variables.
-    HBORDER = 390
-    VBORDER = 290
+    HBORDER = 360
+    VBORDER = 250
     COLLISION1 = 340
     COLLISION2 = 350
     SHIFT = 40
@@ -64,7 +64,7 @@ def main():
     main.left_paddle.speed(0)
     main.left_paddle.shape("square")
     main.left_paddle.color("green")
-    main.left_paddle.shapesize(stretch_wid=5,stretch_len=1)
+    main.left_paddle.shapesize(stretch_wid=4,stretch_len=1)
     main.left_paddle.penup()
     main.left_paddle.goto(-350,0)
 
@@ -72,7 +72,7 @@ def main():
     main.right_paddle = turtle.Turtle()
     main.right_paddle.speed(0)
     main.right_paddle.shape("square")
-    main.right_paddle.shapesize(stretch_wid=5,stretch_len=1)
+    main.right_paddle.shapesize(stretch_wid=4,stretch_len=1)
     main.right_paddle.color("red")
     main.right_paddle.penup()
     main.right_paddle.goto(350,0)
@@ -84,8 +84,8 @@ def main():
     ball.color("black")
     ball.penup()
     ball.goto(0,0)
-    ball_dx = 0.5   # Change ball_dx and ball_dy to adjust the Pong ball's speed...
-    ball_dy = 0.5
+    ball_dx = 5.5   # Change ball_dx and ball_dy to adjust the Pong ball's speed...
+    ball_dy = 5.5
 
     # Create a pen that will keep track of the current score.
     pen = turtle.Turtle()
@@ -94,7 +94,53 @@ def main():
     pen.penup()
     pen.hideturtle()
     pen.goto(0,260)
-    pen.write(player1 + ": 0                    " + player2 + ": 0 ",align="center",font=('Arial', 24, "bold"))
+    pen.write("SCOREBOARD\n\n", align="center", font=("Arial", 24, "bold"))
+    pen.write(player1.upper() + ": 0                    " + player2.upper() + ": 0 ",align="center",font=("Arial", 24, "bold"))
+
+    # Create a pen that will draw a vertical line, making the center line.
+    vert_line = turtle.Turtle()
+    vert_line.speed(0)
+    vert_line.shape("square")
+    vert_line.shapesize(stretch_wid=52,stretch_len=1)
+    vert_line.color("black")
+    vert_line.penup()
+    vert_line.goto(0,-200)
+
+    # Create a pen that will draw a second vertical line, making the left border.
+    vert2_line = turtle.Turtle()
+    vert2_line.speed(0)
+    vert2_line.shape("square")
+    vert2_line.shapesize(stretch_wid=52,stretch_len=1)
+    vert2_line.color("black")
+    vert2_line.penup()
+    vert2_line.goto(540,-200)
+
+    # Create a pen that will draw a third vertical line, making the right border.
+    vert3_line = turtle.Turtle()
+    vert3_line.speed(0)
+    vert3_line.shape("square")
+    vert3_line.shapesize(stretch_wid=52,stretch_len=1)
+    vert3_line.color("black")
+    vert3_line.penup()
+    vert3_line.goto(-500,-200)
+
+    # Create a pen that will draw a horizontal line, making the top center border.
+    horiz_line = turtle.Turtle()
+    horiz_line.speed(0)
+    horiz_line.shape("square")
+    horiz_line.shapesize(stretch_wid=1,stretch_len=52)
+    horiz_line.color("black")
+    horiz_line.penup()
+    horiz_line.goto(30,310)
+
+    # Create a pen that will draw a second horizontal line, making the bottom center border.
+    horiz2_line = turtle.Turtle()
+    horiz2_line.speed(0)
+    horiz2_line.shape("square")
+    horiz2_line.shapesize(stretch_wid=1,stretch_len=52)
+    horiz2_line.color("black")
+    horiz2_line.penup()
+    horiz2_line.goto(30,-380)
 
     # Keyboard binding needed to track actual player movement.
     window.listen()
@@ -103,6 +149,7 @@ def main():
     window.onkeypress(right_paddle_up, "Up")
     window.onkeypress(right_paddle_down, "Down")
 
+    # While loop to handle the actual game, including paddle boundaries, Pong ball boundaries and ending the game.
     while True:
         window.update()
 
@@ -110,7 +157,23 @@ def main():
         ball.setx(ball.xcor() + ball_dx)
         ball.sety(ball.ycor() + ball_dy)
 
-        # Setting up the vertical borders.
+        # Setting up the vertical borders for the left paddle.
+        if ((main.left_paddle.ycor() > VBORDER)):
+            main.left_paddle.sety(VBORDER)
+
+        # Setting up the vertical borders for the left paddle.
+        elif ((main.left_paddle.ycor() < -VBORDER)):
+            main.left_paddle.sety(-VBORDER)
+
+        # Setting up the vertical borders for the right paddle.
+        if ((main.right_paddle.ycor() > VBORDER)):
+            main.right_paddle.sety(VBORDER)
+
+        # Setting up the vertical borders for the right paddle.
+        elif ((main.right_paddle.ycor() < -VBORDER)):
+            main.right_paddle.sety(-VBORDER)
+
+        # Setting up the vertical borders for the Pong ball.
         if (ball.ycor() > VBORDER):
             ball.sety(VBORDER)
             ball_dy *= -1
@@ -119,13 +182,14 @@ def main():
             ball.sety(-VBORDER)
             ball_dy *= -1
             
-        # Setting up the horizontal borders.
+        # Setting up the horizontal borders for the Pong ball.
         if (ball.xcor() > HBORDER):   
             ball.goto(0,0)
             ball_dx *= -1
             player_1_score += 1
             pen.clear()
-            pen.write(player1 + ": " + str(player_1_score) + "                  " + player2 + ": " + str(player_2_score) + " ".format(player_1_score, player_2_score), align="center", font=('Arial',24,"bold"))
+            pen.write("SCOREBOARD\n\n", align="center", font=("Arial", 24, "bold"))
+            pen.write(player1.upper() + ": " + str(player_1_score) + "                  " + player2.upper() + ": " + str(player_2_score) + " ".format(player_1_score, player_2_score), align="center", font=('Arial',24,"bold"))
             #os.system("afplay wallhit.wav&")   # TODO: Uncomment if you're on Linux or macOS to hear sound.
 
         if (ball.xcor()) < -HBORDER:
@@ -133,17 +197,18 @@ def main():
             ball_dx = ball_dx * -1
             player_2_score += 1
             pen.clear()
-            pen.write(player1 + ": " + str(player_1_score) + "                  " + player2 + ": " + str(player_2_score) + " ".format(player_1_score, player_2_score), align="center", font=('Arial',24,"bold"))
+            pen.write("SCOREBOARD\n\n", align="center", font=("Arial", 24, "bold"))
+            pen.write(player1.upper() + ": " + str(player_1_score) + "                  " + player2.upper() + ": " + str(player_2_score) + " ".format(player_1_score, player_2_score), align="center", font=('Arial',24,"bold"))
             #os.system("afplay wallhit.wav&")   # TODO: Uncomment if you're on Linux or macOS to hear sound.
 
         # Handling the collisions with paddles.
         if (ball.xcor() > COLLISION1) and (ball.xcor() < COLLISION2) and (ball.ycor() < main.right_paddle.ycor() + SHIFT and ball.ycor() > main.right_paddle.ycor() - SHIFT):
-            ball.setx(340)
+            ball.setx(COLLISION1)
             ball_dx *= -1
             #os.system("afplay paddle.wav&")    #TODO: Uncomment if you're on Linux or macOS to hear sound.
 
         elif (ball.xcor() < -COLLISION1) and (ball.xcor() > -COLLISION2) and (ball.ycor() < main.left_paddle.ycor() + SHIFT and ball.ycor() > main.left_paddle.ycor() - SHIFT):
-            ball.setx(-340)
+            ball.setx(-COLLISION1)
             ball_dx *= -1
             #os.system("afplay paddle.wav&")    # TODO: Uncomment if you're on Linux or macOS to hear sound.
         
