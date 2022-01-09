@@ -2,7 +2,7 @@
 # Authored By: Markus Walker
 # Inspired By: https://github.com/srimani-programmer/Ping-Pong-Game
 # Licensed By: Open Source
-# Date Modified: 1/8/22
+# Date Modified: 1/9/22
 #
 # Descrption: Simple Ping Pong game developed in Python using the 
 # turte module. Bring a friend and settle once and for all who is
@@ -37,7 +37,7 @@ def startGame():
     startGame.window = turtle.Screen() 
     startGame.window.title("Python Ping-Pong") 
     startGame.window.bgcolor("white")    
-    startGame.window.bgpic("sonic.png") 
+    startGame.window.bgpic("board-pic.png") 
     startGame.window.setup(width=1000,height=1000)
     startGame.window.tracer(0)
 
