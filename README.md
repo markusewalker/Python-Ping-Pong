@@ -8,8 +8,7 @@ The classic game of Ping Pong written in the Python programming language. This p
 - Customizable final score so that there is a clear winner that achieves ultimate Ping Pong bragging rights
 
 ### How To Play
-Player 1 - Use the `w` and `s` keys to move up and down, respectively.
-Player 2 - Use the Up and Down arrow keys to move up and down, respectively.
+Player 1 uses the `w` and `s` keys to move up and down, respectively. Player 2 uses the Up and Down arrow keys to move up and down, respectively.
 
 ### Prerequisites
 Although this project is cross-platform, you will need to ensure your environment has the following:

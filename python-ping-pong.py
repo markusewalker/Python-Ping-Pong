@@ -190,7 +190,7 @@ def main():
             pen.clear()
             pen.write("SCOREBOARD\n\n", align="center", font=("Arial", 24, "bold"))
             pen.write(player1.upper() + ": " + str(player_1_score) + "                  " + player2.upper() + ": " + str(player_2_score) + " ".format(player_1_score, player_2_score), align="center", font=('Arial',24,"bold"))
-            #os.system("afplay wallhit.wav&")   # TODO: Uncomment if you're on Linux or macOS to hear sound.
+            #os.system("afplay wall-hit-sound.wav&")   # TODO: Uncomment if you're on Linux or macOS to hear sound.
 
         if (ball.xcor()) < -HBORDER:
             ball.goto(0,0)
@@ -199,18 +199,18 @@ def main():
             pen.clear()
             pen.write("SCOREBOARD\n\n", align="center", font=("Arial", 24, "bold"))
             pen.write(player1.upper() + ": " + str(player_1_score) + "                  " + player2.upper() + ": " + str(player_2_score) + " ".format(player_1_score, player_2_score), align="center", font=('Arial',24,"bold"))
-            #os.system("afplay wallhit.wav&")   # TODO: Uncomment if you're on Linux or macOS to hear sound.
+            #os.system("afplay wall-hit-sound.wav&")   # TODO: Uncomment if you're on Linux or macOS to hear sound.
 
         # Handling the collisions with paddles.
         if (ball.xcor() > COLLISION1) and (ball.xcor() < COLLISION2) and (ball.ycor() < main.right_paddle.ycor() + SHIFT and ball.ycor() > main.right_paddle.ycor() - SHIFT):
             ball.setx(COLLISION1)
             ball_dx *= -1
-            #os.system("afplay paddle.wav&")    #TODO: Uncomment if you're on Linux or macOS to hear sound.
+            #os.system("afplay paddle-sound.wav&")    #TODO: Uncomment if you're on Linux or macOS to hear sound.
 
         elif (ball.xcor() < -COLLISION1) and (ball.xcor() > -COLLISION2) and (ball.ycor() < main.left_paddle.ycor() + SHIFT and ball.ycor() > main.left_paddle.ycor() - SHIFT):
             ball.setx(-COLLISION1)
             ball_dx *= -1
-            #os.system("afplay paddle.wav&")    # TODO: Uncomment if you're on Linux or macOS to hear sound.
+            #os.system("afplay paddle-sound.wav&")    # TODO: Uncomment if you're on Linux or macOS to hear sound.
         
         # Ends the game once the score has been reached.
         if (player_1_score < FINAL_SCORE and player_2_score < FINAL_SCORE):
