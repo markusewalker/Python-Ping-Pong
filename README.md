@@ -11,6 +11,8 @@ The classic game of Ping Pong written in the Python programming language. This p
 ### How To Play
 Player 1 uses the `w` and `s` keys to move up and down, respectively. Player 2 uses the Up and Down arrow keys to move up and down, respectively.
 
+If you wish to change the score to win, edit line 27. If you wish to edit the ball speed, edit lines 146 and 147.
+
 ### Prerequisites
 Although this project is cross-platform, you will need to ensure your environment has the following:
 
