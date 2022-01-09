@@ -113,8 +113,8 @@ def makeBall():
     makeBall.ball.color("black")
     makeBall.ball.penup()
     makeBall.ball.goto(0,0)
-    makeBall.ball_dx = 5.5   # Change ball_dx and ball_dy to adjust the Pong ball's speed...
-    makeBall.ball_dy = 5.5
+    makeBall.ball_dx = 0.5   # Change ball_dx and ball_dy to adjust the Pong ball's speed...
+    makeBall.ball_dy = 0.5
 
 #################################################################################
 # Function to create a pen that will keep track of the current score.
