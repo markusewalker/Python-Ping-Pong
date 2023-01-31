@@ -32,4 +32,4 @@ If you are on a GUI such as IDLE or PyCharm, run the module as any other Python 
 
 Here is a preview of the game once it is successfully launched:
 
-![Python Ping Pong Preview](https://github.com/markusewalker/Python-Ping-Pong/blob/main/picture.png)
+![Python Ping Pong Preview](https://github.com/markusewalker/Python-Ping-Pong/blob/main/src/picture.png)
